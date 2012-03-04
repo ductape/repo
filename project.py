@@ -1521,9 +1521,9 @@ class Project(object):
               msg = ' (%s: %s)' % (res[0], res[1])
             except:
               msg = ''
-          raise DownloadError('HTTP %s%s' % (e.code, msg))
+          raise DownloadError('%s: HTTP %s%s' % (self.name, e.code, msg))
         except urllib2.URLError, e:
-          raise DownloadError('%s: %s ' % (req.get_host(), str(e)))
+          raise DownloadError('%s: host %s: %s ' % (self.name, req.get_host(), str(e)))
       finally:
         _urllib_lock.release()
 
